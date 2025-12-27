@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Neocities - Dashboard</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description"        content="Create and surf awesome websites for free.">
+
+<link rel="canonical" href="https://neocities.org/dashboard">
+
+<meta property="og:title"       content="Neocities">
+<meta property="og:type"        content="website">
+<meta property="og:image"       content="https://neocities.org/img/neocities-front-screenshot.jpg">
+<meta property="og:description" content="Create and surf awesome websites for free.">
+
+<link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+
+
+    <link href="/css/neo.css" rel="stylesheet" type="text/css" media="all">
+
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+      <meta http-equiv="Pragma" content="no-cache">
+      <meta http-equiv="Expires" content="0">
+
+    <script src="/js/jquery-1.11.0.min.js"></script>
+
+    <script src="/js/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/css/highlight/styles/tomorrow-night.css">
+    <script>
+      hljs.highlightAll()
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var eventDateElements = document.querySelectorAll('.local-date-title');
+        eventDateElements.forEach(function(element) {
+          var timestamp = element.getAttribute('data-timestamp');
+          var date = dayjs.unix(timestamp);
+          var formattedDate = date.format('MMMM D, YYYY [at] h:mm A');
+          element.title = formattedDate;
+        });
+      });
+    </script>
+  </head>
+
+  <body class="interior">
+    <div class="page">
+      <header class="header-Base">
+
+  <nav class="header-Nav clearfix" role="navigation">
+
+    <a href="#!" title="show small screen nav" class="small-Nav">
+      <img src="/img/nav-Icon.png" alt="navigation icon" />
+    </a>
+
+    <ul class="h-Nav constant-Nav">
+        <li>
+    <a href="/browse" id="browse-link">Websites</a>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const browseLink = document.getElementById('browse-link');
+
+        if (window.location.pathname === '/browse') {
+          const params = new URLSearchParams(window.location.search);
+          const persistParams = new URLSearchParams();
+          const validPattern = /^[a-zA-Z0-9 ]+$/;
+
+          ['sort_by', 'tag'].forEach(key => {
+            if (params.has(key)) {
+              const value = params.get(key);
+              if (value.length <= 25 && validPattern.test(value)) {
+                persistParams.set(key, value);
+              }
+            }
+          });
+
+          localStorage.setItem('browseQuery', persistParams.toString());
+        }
+
+        const savedQuery = localStorage.getItem('browseQuery');
+
+        if (savedQuery) {
+          browseLink.href = `/browse?${savedQuery}`;
+        }
+      });
+    </script>
+  </li>
+  <li>
+    <a href="/activity">Activity</a>
+  </li>
+  <li>
+    <a href="/tutorials">Learn</a>
+  </li>
+
+
+    </ul>
+
+    <ul class="status-Nav">
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            flakwolves
+            <span class="info">
+              <i class="fa fa-caret-down"></i>
+            </span>
+          </a>
+          <ul class="dropdown-menu">
+              <li><a href="/site/flakwolves">Profile</a></li>
+              <li>
+                <a href="/?activity=mine"><span class="float-Left">Activity</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li><a href="/dashboard">Edit</a></li>
+            <li><a href="https://flakwolves.su" target="_blank">View</a></li>
+            <li><a href="/site/flakwolves/stats">Stats</a></li>
+            <li class="divider"></li>
+            <li><a href="/settings">Settings</a></li>
+
+              <li class="dropdown-submenu pull-left">
+                <a tabindex="-1" href="#" onclick="return false">Switch Site</a>
+                <ul class="dropdown-menu">
+                    <li>
+                      <a href="/signin/factioncz">factioncz</a>
+                    </li>
+                </ul>
+              </li>
+
+
+            <li><a href="#" onclick="$('#signoutForm').submit()">Sign Out</a></li>
+            <form id="signoutForm" method="POST" action="/signout" style="display: none">
+              <input name="csrf_token" type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=">
+            </form>
+          </ul>
+        </li>
+
+      </ul>
+  </nav>
+
+  <div class="logo int-Logo">
+    <a href="/" title="back to home">
+      <span class="hidden">Neocities.org</span>
+      <img src="/img/cat.png" alt="Neocities.org" />
+    </a>
+  </div>
+</header>
+
+      <script src="/js/dropzone-min.js"></script>
+<style>
+  .dz-default {
+    display: none;
+  }
+  .dz-preview {
+    display: none;
+  }
+  .dz-processing {
+    display: none;
+  }
+  .dz-error {
+    display: none;
+  }
+  .dz-image-preview {
+    display: none;
+  }
+</style>
+<div class="header-Outro with-site-image dashboard">
+  <div class="row content wide">
+    <div class="col col-50 signup-Area">
+      <div class="signup-Form">
+  	  <fieldset class="content">
+        <a href="https://flakwolves.su" class="screenshot dashboard" style="background-image:url(/site_screenshots/39/86/flakwolves/index.html.540x405.webp);"></a>
+	    </fieldset>
+      </div>
+    </div>
+
+	<div class="col col-50">
+    <h2 class="eps">FLAKWOLVES DOT SU</h2>
+    <p class="site-url">
+      <a href="https://flakwolves.su" target="_blank">flakwolves.su</a>
+      <a href="#" id="shareButton" class="btn-Action" data-container="body" data-toggle="popover" data-placement="bottom" data-content='<a href="/site/flakwolves.rss" target="_blank"><span>RSS Feed</span></a>
+<br>
+<a href="https://facebook.com/sharer.php?u=https%3A%2F%2Fflakwolves.su" target="_blank">Facebook</a>
+<br>
+<a href="https://bsky.app/intent/compose?text=FLAKWOLVES+DOT+SU%3A+https%3A%2F%2Fflakwolves.su" target="_blank">Bluesky</a>
+<br>
+<a href="https://twitter.com/intent/tweet?text=FLAKWOLVES+DOT+SU%3A+https%3A%2F%2Fflakwolves.su" target="_blank">Twitter</a>
+<br>
+<a href="https://www.reddit.com/submit?title=FLAKWOLVES+DOT+SU&amp;url=https%3A%2F%2Fflakwolves.su" target="_blank">Reddit</a>
+<br>
+<a href="https://www.tumblr.com/share?v=3&amp;u=https%3A%2F%2Fflakwolves.su&amp;t=FLAKWOLVES+DOT+SU" target="_blank">Tumblr</a>
+<br>
+<a href="https://toot.kytta.dev/?text=FLAKWOLVES+DOT+SU%3A+https%3A%2F%2Fflakwolves.su" target="_blank">Mastodon</a>
+'><i class="fa fa-share-alt"></i> <span>Share</span></a>
+    </p>
+	<ul>
+      <li>Last updated <strong class="local-date-title" data-timestamp="1759807598">2 months ago</strong></li>
+    <li>Using <strong>0.1% (68.13 MB)</strong> of your <strong>50 GB</strong> storage.
+    <br>
+    <li>
+      Used 1.2 GB of bandwidth this month.
+      <br>
+      
+    </li>
+	</ul>
+	</div>
+
+  </div> <!-- end .row -->
+</div> <!-- end .header-Outro -->
+
+<main class="content-Base" role="main">
+
+<div class="content wide">
+
+
+  <div id="alertDialogue" class="alert alert-block alert-success" style="display: none; max-height: 200px; overflow-y: auto;"></div>
+
+<div id="filesDisplay" class="files">
+  <div id="uploadingOverlay" class="uploading-overlay" style="display: none">
+  <div class="uploading">
+      <p>Uploading, please wait...</p>
+      <p id="uploadFileName"></p>
+    <!-- <div id="progressBar" class="progress-bar" style="display: none"><div id="uploadingProgress" class="progress" style="width: 0%"></div></div> -->
+  </div>
+</div>
+<div id="movingOverlay" class="uploading-overlay" style="display: none">
+  <div class="uploading">
+      <p>Moving file, please wait...</p>
+  </div>
+</div>
+<div class="header">
+  <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default iconview-button" title="Icon View" onclick="iconView()"><i class="fa fa-th"></i></button>
+    <button type="button" class="btn btn-default listview-button" title="List View" onclick="listView()"><i class="fa fa-list"></i></button>
+  </div>
+  <div class="breadcrumbs">
+      Home
+
+  </div>
+  <div class="actions">
+    <a href="#createFile" class="btn-Action" data-toggle="modal"><i class="fa fa-file"></i> New File</a>
+    <a href="#createDir" class="btn-Action" data-toggle="modal"><i class="fa fa-folder"></i> New Folder</a>
+    <a href="#" id="uploadButton" class="btn-Action"><i class="fa fa-arrow-circle-up"></i> Upload</a>
+  </div>
+</div>
+<div class="list">
+  <form action="/site_files/upload" class="dropzone" id="uploads">
+    <div class="dz-message" style="display: none"></div>
+    <input name="csrf_token" type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=">
+    <input name="dir" type="hidden" value="" id="dir">
+    <div class="upload-Boundary with-instruction">
+        <div class="file filehover">
+            <div class="html-thumbnail folder fileimagehover" ondrop="moveFileToFolder(event)">
+              <div class="folder-icon"></div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            207
+          </a>
+          <div class="column size">
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="968076be2e38cf897d4d6cea3faca9c037e1a4e3b4b7744fb2533e07751bd30a" style="display: none">207</div>
+              <a href="?dir=207"><i class="fa fa-edit" title="Manage"></i> Manage</a>
+              <a href="#" onclick="confirmFileRename($('#968076be2e38cf897d4d6cea3faca9c037e1a4e3b4b7744fb2533e07751bd30a').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#968076be2e38cf897d4d6cea3faca9c037e1a4e3b4b7744fb2533e07751bd30a').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="?dir=207" title="View 207"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail folder fileimagehover" ondrop="moveFileToFolder(event)">
+              <div class="folder-icon"></div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            portfolio_images
+          </a>
+          <div class="column size">
+          </div>
+          <div class="column updated">
+              1 year ago
+          </div>
+
+          <div class="overlay">
+            <div id="9ed6ed367c6adf6719a5c3d30e01bc0aea8e407f7a98f0bd3547dab6751b58ad" style="display: none">portfolio_images</div>
+              <a href="?dir=portfolio_images"><i class="fa fa-edit" title="Manage"></i> Manage</a>
+              <a href="#" onclick="confirmFileRename($('#9ed6ed367c6adf6719a5c3d30e01bc0aea8e407f7a98f0bd3547dab6751b58ad').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#9ed6ed367c6adf6719a5c3d30e01bc0aea8e407f7a98f0bd3547dab6751b58ad').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="?dir=portfolio_images" title="View portfolio_images"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail folder fileimagehover" ondrop="moveFileToFolder(event)">
+              <div class="folder-icon"></div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            territory
+          </a>
+          <div class="column size">
+          </div>
+          <div class="column updated">
+              11 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="b085a22402bf6ff4dcf9d5296d8d0b5fd06b8edc774b03b5e9c3f4c059842433" style="display: none">territory</div>
+              <a href="?dir=territory"><i class="fa fa-edit" title="Manage"></i> Manage</a>
+              <a href="#" onclick="confirmFileRename($('#b085a22402bf6ff4dcf9d5296d8d0b5fd06b8edc774b03b5e9c3f4c059842433').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#b085a22402bf6ff4dcf9d5296d8d0b5fd06b8edc774b03b5e9c3f4c059842433').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="?dir=territory" title="View territory"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/065%20copy.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            065 copy.png
+          </a>
+          <div class="column size">
+              160.99 KB
+          </div>
+          <div class="column updated">
+              1 year ago
+          </div>
+
+          <div class="overlay">
+            <div id="387b5006993e4108f40edb08b133ecfc0650a8a5f18c5055bf9bc6aa3bb94d6d" style="display: none">065 copy.png</div>
+              <a href="#" onclick="confirmFileRename($('#387b5006993e4108f40edb08b133ecfc0650a8a5f18c5055bf9bc6aa3bb94d6d').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#387b5006993e4108f40edb08b133ecfc0650a8a5f18c5055bf9bc6aa3bb94d6d').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/065%20copy.png" title="View 065 copy.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">docx</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            2717v2.docx
+          </a>
+          <div class="column size">
+              17.56 KB
+          </div>
+          <div class="column updated">
+              4 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="0f9534623c7209b7a51cd2062188f9cbe01980938a0e97b001849b63ef0df6be" style="display: none">2717v2.docx</div>
+              <a href="#" onclick="confirmFileRename($('#0f9534623c7209b7a51cd2062188f9cbe01980938a0e97b001849b63ef0df6be').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#0f9534623c7209b7a51cd2062188f9cbe01980938a0e97b001849b63ef0df6be').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/2717v2.docx" title="View 2717v2.docx" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">docx</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            2777777v2.docx
+          </a>
+          <div class="column size">
+              17.45 KB
+          </div>
+          <div class="column updated">
+              4 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="7a7b150ffc0155d350ba7a8b52056082b8f3888481b8619cd383250f674ee080" style="display: none">2777777v2.docx</div>
+              <a href="#" onclick="confirmFileRename($('#7a7b150ffc0155d350ba7a8b52056082b8f3888481b8619cd383250f674ee080').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#7a7b150ffc0155d350ba7a8b52056082b8f3888481b8619cd383250f674ee080').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/2777777v2.docx" title="View 2777777v2.docx" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/bodyguardimagining1%20final.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            bodyguardimagining1 final.png
+          </a>
+          <div class="column size">
+              2.13 MB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="9e17e49fe20e478e189311e3fba0d6a03d57c31b507eafeb8c1ad3ad9523a3de" style="display: none">bodyguardimagining1 final.png</div>
+              <a href="#" onclick="confirmFileRename($('#9e17e49fe20e478e189311e3fba0d6a03d57c31b507eafeb8c1ad3ad9523a3de').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#9e17e49fe20e478e189311e3fba0d6a03d57c31b507eafeb8c1ad3ad9523a3de').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/bodyguardimagining1%20final.png" title="View bodyguardimagining1 final.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">css</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            css for theme.css
+          </a>
+          <div class="column size">
+              479.53 KB
+          </div>
+          <div class="column updated">
+              4 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="9adb8e4f0bad3f7e57f32a895f184f95e7546c9e94902513b345496269e144c0" style="display: none">css for theme.css</div>
+              <a href="/site_files/text_editor?filename=css+for+theme.css"><i class="fa fa-edit" title="Edit"></i> Edit</a>
+              <a href="#" onclick="confirmFileRename($('#9adb8e4f0bad3f7e57f32a895f184f95e7546c9e94902513b345496269e144c0').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#9adb8e4f0bad3f7e57f32a895f184f95e7546c9e94902513b345496269e144c0').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/css%20for%20theme.css" title="View css for theme.css" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/distortioncomponent.jpg.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            distortioncomponent.jpg
+          </a>
+          <div class="column size">
+              1.29 MB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="c6cb7a969f15ea1a61a0984e712119145d7de04176f55e73bdc0b864cc8ec41d" style="display: none">distortioncomponent.jpg</div>
+              <a href="#" onclick="confirmFileRename($('#c6cb7a969f15ea1a61a0984e712119145d7de04176f55e73bdc0b864cc8ec41d').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#c6cb7a969f15ea1a61a0984e712119145d7de04176f55e73bdc0b864cc8ec41d').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/distortioncomponent.jpg" title="View distortioncomponent.jpg" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/distortioncomponentthumbnail.jpg.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            distortioncomponentthumbnail.jpg
+          </a>
+          <div class="column size">
+              514.35 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="2e06083a2f92d1b2f42676584ed9d759b67ff6912cd7b31cf9911218b2ef5592" style="display: none">distortioncomponentthumbnail.jpg</div>
+              <a href="#" onclick="confirmFileRename($('#2e06083a2f92d1b2f42676584ed9d759b67ff6912cd7b31cf9911218b2ef5592').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#2e06083a2f92d1b2f42676584ed9d759b67ff6912cd7b31cf9911218b2ef5592').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/distortioncomponentthumbnail.jpg" title="View distortioncomponentthumbnail.jpg" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/dkgraytexture.gif.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            dkgraytexture.gif
+          </a>
+          <div class="column size">
+              7.07 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="4cd642e3f3dba15f15d9e5f1759ba386d04a42a5712976003a85d758f8efbd8f" style="display: none">dkgraytexture.gif</div>
+              <a href="#" onclick="confirmFileRename($('#4cd642e3f3dba15f15d9e5f1759ba386d04a42a5712976003a85d758f8efbd8f').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#4cd642e3f3dba15f15d9e5f1759ba386d04a42a5712976003a85d758f8efbd8f').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/dkgraytexture.gif" title="View dkgraytexture.gif" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">docx</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            dogshit manifestos written in the margins of guro doujins.docx
+          </a>
+          <div class="column size">
+              19.55 KB
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="535669d8e6aecc3db357bfe730d30d7b7694810848a282440b7291e162ff1182" style="display: none">dogshit manifestos written in the margins of guro doujins.docx</div>
+              <a href="#" onclick="confirmFileRename($('#535669d8e6aecc3db357bfe730d30d7b7694810848a282440b7291e162ff1182').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#535669d8e6aecc3db357bfe730d30d7b7694810848a282440b7291e162ff1182').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/dogshit%20manifestos%20written%20in%20the%20margins%20of%20guro%20doujins.docx" title="View dogshit manifestos written in the margins of guro doujins.docx" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">pdf</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            dogshit.pdf
+          </a>
+          <div class="column size">
+              102.48 KB
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="f6b592f89570ac7e8819956d3069825d6b3bf7339ab9430f607463c902d01fbd" style="display: none">dogshit.pdf</div>
+              <a href="#" onclick="confirmFileRename($('#f6b592f89570ac7e8819956d3069825d6b3bf7339ab9430f607463c902d01fbd').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#f6b592f89570ac7e8819956d3069825d6b3bf7339ab9430f607463c902d01fbd').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/dogshit.pdf" title="View dogshit.pdf" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">png</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            elf911.png
+          </a>
+          <div class="column size">
+              6.44 MB
+          </div>
+          <div class="column updated">
+              4 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="de5d3ad944e10fdb4e9cc8ea92c499861bee8088b22a3129c50fa893aa96f436" style="display: none">elf911.png</div>
+              <a href="#" onclick="confirmFileRename($('#de5d3ad944e10fdb4e9cc8ea92c499861bee8088b22a3129c50fa893aa96f436').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#de5d3ad944e10fdb4e9cc8ea92c499861bee8088b22a3129c50fa893aa96f436').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/elf911.png" title="View elf911.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">ico</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            favicon.ico
+          </a>
+          <div class="column size">
+              4.42 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="41447798d3485885d856f6cbcf1a832c0f6d807080938b9f3967a03d877d3df4" style="display: none">favicon.ico</div>
+              <a href="#" onclick="confirmFileRename($('#41447798d3485885d856f6cbcf1a832c0f6d807080938b9f3967a03d877d3df4').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#41447798d3485885d856f6cbcf1a832c0f6d807080938b9f3967a03d877d3df4').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/favicon.ico" title="View favicon.ico" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">pdf</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            FULL-BLOODIED MOONv3.pdf
+          </a>
+          <div class="column size">
+              32.3 KB
+          </div>
+          <div class="column updated">
+              2 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="46d01bca34ed2cf21c0c26b63711b57d45335508e00537d75f13cef1775b7cf3" style="display: none">FULL-BLOODIED MOONv3.pdf</div>
+              <a href="#" onclick="confirmFileRename($('#46d01bca34ed2cf21c0c26b63711b57d45335508e00537d75f13cef1775b7cf3').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#46d01bca34ed2cf21c0c26b63711b57d45335508e00537d75f13cef1775b7cf3').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/FULL-BLOODIED%20MOONv3.pdf" title="View FULL-BLOODIED MOONv3.pdf" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail html fileimagehover">
+              <img src="/site_screenshots/39/86/flakwolves/index.html.210x158.webp" alt="Website screenshot">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            index.html
+          </a>
+          <div class="column size">
+              10.57 KB
+          </div>
+          <div class="column updated">
+              4 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="0eb547304658805aad788d320f10bf1f292797b5e6d745a3bf617584da017051" style="display: none">index.html</div>
+              <a href="/site_files/text_editor?filename=index.html"><i class="fa fa-edit" title="Edit"></i> Edit</a>
+            <a class="link-overlay" href="https://flakwolves.su" title="View index.html" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/neocities.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            neocities.png
+          </a>
+          <div class="column size">
+              13.23 KB
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="d8371f735216dc7f11330f179b63a9b0f6a8edf8874e4a3b716b74532fc7716c" style="display: none">neocities.png</div>
+              <a href="#" onclick="confirmFileRename($('#d8371f735216dc7f11330f179b63a9b0f6a8edf8874e4a3b716b74532fc7716c').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#d8371f735216dc7f11330f179b63a9b0f6a8edf8874e4a3b716b74532fc7716c').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/neocities.png" title="View neocities.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail html fileimagehover">
+              <img src="/site_screenshots/39/86/flakwolves/not_found.html.210x158.webp" alt="Website screenshot">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            not_found.html
+          </a>
+          <div class="column size">
+              347 B
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="d8f3d382c17c3b3cf96e79a63b527f34a5dd0b565c4f5058493b259c73a5807e" style="display: none">not_found.html</div>
+              <a href="/site_files/text_editor?filename=not_found.html"><i class="fa fa-edit" title="Edit"></i> Edit</a>
+              <a href="#" onclick="confirmFileRename($('#d8f3d382c17c3b3cf96e79a63b527f34a5dd0b565c4f5058493b259c73a5807e').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#d8f3d382c17c3b3cf96e79a63b527f34a5dd0b565c4f5058493b259c73a5807e').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/not_found" title="View not_found.html" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">pdf</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            NoTigerbyMIKA.pdf
+          </a>
+          <div class="column size">
+              6.8 MB
+          </div>
+          <div class="column updated">
+              4 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="28f4727c693a5788998fd4837541381dcd69329cdea2a8d94aeb42bff63b1825" style="display: none">NoTigerbyMIKA.pdf</div>
+              <a href="#" onclick="confirmFileRename($('#28f4727c693a5788998fd4837541381dcd69329cdea2a8d94aeb42bff63b1825').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#28f4727c693a5788998fd4837541381dcd69329cdea2a8d94aeb42bff63b1825').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/NoTigerbyMIKA.pdf" title="View NoTigerbyMIKA.pdf" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/Photos_BKXnm6Gc6S.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            Photos_BKXnm6Gc6S.png
+          </a>
+          <div class="column size">
+              3.61 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="04a8eb29453c8eee751cb81f6f0a8aa158aa2e66343b7a17dd7a98fbd58fd7c6" style="display: none">Photos_BKXnm6Gc6S.png</div>
+              <a href="#" onclick="confirmFileRename($('#04a8eb29453c8eee751cb81f6f0a8aa158aa2e66343b7a17dd7a98fbd58fd7c6').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#04a8eb29453c8eee751cb81f6f0a8aa158aa2e66343b7a17dd7a98fbd58fd7c6').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/Photos_BKXnm6Gc6S.png" title="View Photos_BKXnm6Gc6S.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/platinumdessertstormthumbnail.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            platinumdessertstormthumbnail.png
+          </a>
+          <div class="column size">
+              584.83 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="6567aacde413cf90372e024985655aaa9466087d25cae4e5181f1f18754b4647" style="display: none">platinumdessertstormthumbnail.png</div>
+              <a href="#" onclick="confirmFileRename($('#6567aacde413cf90372e024985655aaa9466087d25cae4e5181f1f18754b4647').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#6567aacde413cf90372e024985655aaa9466087d25cae4e5181f1f18754b4647').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/platinumdessertstormthumbnail.png" title="View platinumdessertstormthumbnail.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/signal2025.jpeg.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            signal2025.jpeg
+          </a>
+          <div class="column size">
+              340.49 KB
+          </div>
+          <div class="column updated">
+              2 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="a3fd2fffe8fa25e6d78b06bcffa8222deb87c4bfcf66373664c86bbbc934bc13" style="display: none">signal2025.jpeg</div>
+              <a href="#" onclick="confirmFileRename($('#a3fd2fffe8fa25e6d78b06bcffa8222deb87c4bfcf66373664c86bbbc934bc13').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#a3fd2fffe8fa25e6d78b06bcffa8222deb87c4bfcf66373664c86bbbc934bc13').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/signal2025.jpeg" title="View signal2025.jpeg" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">ttf</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            SimSun-01.ttf
+          </a>
+          <div class="column size">
+              12.43 MB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="540aaebe52c600d4482818195299f1956e5f1f51cd71c97e993761ebd01b3feb" style="display: none">SimSun-01.ttf</div>
+              <a href="#" onclick="confirmFileRename($('#540aaebe52c600d4482818195299f1956e5f1f51cd71c97e993761ebd01b3feb').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#540aaebe52c600d4482818195299f1956e5f1f51cd71c97e993761ebd01b3feb').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/SimSun-01.ttf" title="View SimSun-01.ttf" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">css</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            style.css
+          </a>
+          <div class="column size">
+              458 B
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="b78be019f1dc6d57753ea900c3805b114cd53ab7c0db836cc081836df1b99b7a" style="display: none">style.css</div>
+              <a href="/site_files/text_editor?filename=style.css"><i class="fa fa-edit" title="Edit"></i> Edit</a>
+              <a href="#" onclick="confirmFileRename($('#b78be019f1dc6d57753ea900c3805b114cd53ab7c0db836cc081836df1b99b7a').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#b78be019f1dc6d57753ea900c3805b114cd53ab7c0db836cc081836df1b99b7a').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/style.css" title="View style.css" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">pdf</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            thepsymortar.pdf
+          </a>
+          <div class="column size">
+              2.28 MB
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="687c765f462dbb99b80bedeae25bd7f96ec5a53eab9125cd6b2ffe7d330cbcdf" style="display: none">thepsymortar.pdf</div>
+              <a href="#" onclick="confirmFileRename($('#687c765f462dbb99b80bedeae25bd7f96ec5a53eab9125cd6b2ffe7d330cbcdf').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#687c765f462dbb99b80bedeae25bd7f96ec5a53eab9125cd6b2ffe7d330cbcdf').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/thepsymortar.pdf" title="View thepsymortar.pdf" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail misc fileimagehover">
+              <div class="misc-icon">gif</div>
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            Untitled.gif
+          </a>
+          <div class="column size">
+              5.21 MB
+          </div>
+          <div class="column updated">
+              4 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="449c50c62e8f1910a3098fdd842c32024df5dab14995a20d2a2ab6932aed6455" style="display: none">Untitled.gif</div>
+              <a href="#" onclick="confirmFileRename($('#449c50c62e8f1910a3098fdd842c32024df5dab14995a20d2a2ab6932aed6455').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#449c50c62e8f1910a3098fdd842c32024df5dab14995a20d2a2ab6932aed6455').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/Untitled.gif" title="View Untitled.gif" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/V4xu2zY%20(1).png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            V4xu2zY (1).png
+          </a>
+          <div class="column size">
+              103.06 KB
+          </div>
+          <div class="column updated">
+              5 years ago
+          </div>
+
+          <div class="overlay">
+            <div id="7ed0b7e402fda74fa5f689edc5ff15a5f3883f38d2090599c7d11f388c4e6082" style="display: none">V4xu2zY (1).png</div>
+              <a href="#" onclick="confirmFileRename($('#7ed0b7e402fda74fa5f689edc5ff15a5f3883f38d2090599c7d11f388c4e6082').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#7ed0b7e402fda74fa5f689edc5ff15a5f3883f38d2090599c7d11f388c4e6082').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/V4xu2zY%20(1).png" title="View V4xu2zY (1).png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail html fileimagehover">
+              <img src="/site_screenshots/39/86/flakwolves/visualportfolio.html.210x158.webp" alt="Website screenshot">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            visualportfolio.html
+          </a>
+          <div class="column size">
+              5.16 KB
+          </div>
+          <div class="column updated">
+              4 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="eba43d1e76e7072c53c1fa7f658d76926d75f218c8801b89c847dee3adabee84" style="display: none">visualportfolio.html</div>
+              <a href="/site_files/text_editor?filename=visualportfolio.html"><i class="fa fa-edit" title="Edit"></i> Edit</a>
+              <a href="#" onclick="confirmFileRename($('#eba43d1e76e7072c53c1fa7f658d76926d75f218c8801b89c847dee3adabee84').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#eba43d1e76e7072c53c1fa7f658d76926d75f218c8801b89c847dee3adabee84').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/visualportfolio" title="View visualportfolio.html" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/websitebanner.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            websitebanner.png
+          </a>
+          <div class="column size">
+              165.68 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="618fddc5cdade4c33c10753c396ca0f5e5bcc214186b276b8e476326cac9f6fe" style="display: none">websitebanner.png</div>
+              <a href="#" onclick="confirmFileRename($('#618fddc5cdade4c33c10753c396ca0f5e5bcc214186b276b8e476326cac9f6fe').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#618fddc5cdade4c33c10753c396ca0f5e5bcc214186b276b8e476326cac9f6fe').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/websitebanner.png" title="View websitebanner.png" target="_blank"></a>
+          </div>
+        </div>
+        <div class="file filehover">
+            <div class="html-thumbnail image fileimagehover">
+              <img src="/site_thumbnails/39/86/flakwolves/websitebannerlarge.png.210x158.webp" alt="Image thumbnail">
+              <div class="overlay"></div>
+            </div>
+
+          <a class="title">
+            websitebannerlarge.png
+          </a>
+          <div class="column size">
+              237.95 KB
+          </div>
+          <div class="column updated">
+              10 months ago
+          </div>
+
+          <div class="overlay">
+            <div id="06a2efa504faec3ebd1839671f06090ddd5b7ed1e6bbc22cc9c28403c5852d34" style="display: none">websitebannerlarge.png</div>
+              <a href="#" onclick="confirmFileRename($('#06a2efa504faec3ebd1839671f06090ddd5b7ed1e6bbc22cc9c28403c5852d34').text())"><i class="fa fa-file" title="Rename"></i> Rename</a>
+              <a href="#" onclick="confirmFileDelete($('#06a2efa504faec3ebd1839671f06090ddd5b7ed1e6bbc22cc9c28403c5852d34').text())"><i class="fa fa-trash" title="Delete"></i> Delete</a>
+            <a class="link-overlay" href="https://flakwolves.su/websitebannerlarge.png" title="View websitebannerlarge.png" target="_blank"></a>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
+</div>
+
+      <form method="POST" action="/site_files/delete" id="deleteFilenameForm">
+        <input name="csrf_token" type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=">
+        <input type="hidden" id="deleteFilenameInput" name="filename">
+      </form>
+
+      <div class="modal hide" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+          <h3 id="deleteConfirmModalLabel">Confirm deletion</h3>
+        </div>
+        <div class="modal-body">
+          <p>You are about to delete <strong><span id="deleteFileName"></span></strong>. Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn cancel" data-dismiss="modal" aria-hidden="true" type="button">Cancel</button>
+          <button class="btn-Action btn-danger" type="button" onclick="fileDelete()"><i class="fa fa-trash" title="Delete"></i>Delete</button>
+        </div>
+      </div>
+
+      <div class="modal hide" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel" aria-hidden="true">
+        <form method="post" action="/site_files/rename">
+          <input type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=" name="csrf_token">
+          <input type="hidden" value="" name="dir">
+          <input type="hidden" id="renamePathInput" name="path">
+
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+            <h3 id="renameModalLabel">Rename / Move</h3>
+          </div>
+          <div class="modal-body">
+            <input id="renameNewPathInput" name="new_path" type="text" style="width: 100%">
+            <p>Note: We will automatically scrub any characters not matching: a-z A-Z 0-9 _ - .</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn cancel" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button type="submit" class="btn-Action">Rename</button>
+          </div>
+        </form>
+      </div>
+
+
+<div class="site-actions" style="margin-bottom:25px">
+    <a href="/site_files/download">Download entire site</a> |
+    <a href="/site_files/mount_info">Mount your site as a drive on your computer</a>
+</div>
+
+</div>
+</main>
+
+<form id="uploadFilesButtonForm" method="POST" action="/api/upload" enctype="multipart/form-data" style="display: none" onsubmit="event.preventDefault(); showUploadProgress(); uploadFileFromButton();">
+  <input name="csrf_token" type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=">
+  <input name="from_button" type="hidden" value="true">
+  <input name="dir" type="hidden" id="dir" value="">
+  <input id="uploadFiles" type="file" name="file" multiple>
+</form>
+
+<div class="modal hide" id="createDir" tabindex="-1" role="dialog" aria-labelledby="createDirLabel" aria-hidden="true">
+  <form method="post" action="/site/create_directory">
+    <input type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=" name="csrf_token">
+    <input type="hidden" value="" name="dir">
+    <div class="modal-header">
+      <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+      <h3 id="createDirLabel">Create Folder</h3>
+    </div>
+    <div class="modal-body">
+      <input id="newDirInput" name="name" type="text" placeholder="folder_name">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn cancel" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button type="submit" class="btn-Action">Create</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal hide" id="createFile" tabindex="-1" role="dialog" aria-labelledby="createFileLabel" aria-hidden="true">
+  <form id="createFileForm" onsubmit="return false;">
+    <input type="hidden" value="kwpE5gkhj2s3gaGVHHPmMK5leafTRTx/mxXoFmTJ8HM=" name="csrf_token" id="createFileCSRFToken">
+    <input type="hidden" value="" name="dir" id="createFileDir">
+    <div class="modal-header">
+      <button class="close" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+      <h3 id="createFileLabel">Create New File</h3>
+    </div>
+    <div class="modal-body">
+      <div id="createFileError" class="alert alert-error" style="display: none; margin-bottom: 15px;"></div>
+      <input id="newFileInput" name="filename" type="text" placeholder="newfile.html">
+      <p>Note: We will automatically scrub any characters not matching: a-z A-Z 0-9 _ - .</p>
+      <p>Allowed file types: html, htm, txt, js, css, md, json, xml, py, and others. Must be an editable file type.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn cancel" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button type="button" class="btn-Action" onclick="handleCreateFile()">Create</button>
+    </div>
+  </form>
+</div>
+
+<script src="/js/dashboard.js"></script>
+
+    </div>
+    <footer class="footer-Base">
+      <aside class="footer-Outro">
+  <div class="footer-Content">
+    <div class="row">
+      <p class="tiny col credits">
+        <a href="https://neocities.org" title="Neocities.org" style="text-decoration:none;">Neocities</a> is <a href="https://github.com/neocities" title="Neocities on GitHub">open source</a>. Follow us on <a href="https://bsky.app/profile/neocities.org">Bluesky</a>
+      </p>
+      <nav class="footer-Nav col">
+        <ul class="tiny h-Nav">
+          <li><a href="/about">About</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/cli">CLI</a></li>
+            <li><a href="//blog.neocities.org">Blog</a></li>
+            <li><a href="/api">API</a></li>
+            <li><a href="/press">Press</a></li>
+          <li><a href="http://status.neocitiesops.net/">Status</a></li>
+          <li><a href="/terms" rel="nofollow">Terms</a></li>
+          <li><a href="/contact" rel="nofollow">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</aside>
+
+    </footer>
+
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/nav.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/typeahead.bundle.js"></script>
+    <script src="/js/dayjs.min.js"></script>
+    
+    <script>
+      $("a#like").tooltip({html: true})
+      $("a.comment_like").tooltip({html: true})
+      $('#shareButton').popover({html: true})
+      $('#tipButton').popover({html: true})
+
+      $('.typeahead').typeahead({
+        minLength: 2,
+        highlight: true
+      }, {
+        name: 'tags',
+        source: function(query, callback) {
+          $.get('/tags/autocomplete/'+query+'.json', function(data) {
+            var suggestions = JSON.parse(data)
+            var suggestionObjects = []
+            for(var i=0; i<suggestions.length; i++)
+              suggestionObjects.push({value: suggestions[i]})
+
+            callback(suggestionObjects)
+          })
+        }
+      }).on('typeahead:selected', function(e) {
+        e.target.form.submit()
+      })
+    </script>
+  </body>
+</html>
